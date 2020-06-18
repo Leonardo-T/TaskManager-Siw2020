@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html	lang="en"
+		xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>TaskManager</title>
+</head>
+<body>
+	<h1 th:text="${project.name}" style="color:red"></h1>
+	<h4 th:text="${project.description}" style ="color:gray"></h4>
+	<div th:if="${members.size() > 0}">
+		<h3>Shared with:</h3>
+		<ul>
+			<li th:each="member : ${members}">
+				<div th:text="${member.firstName} + ' ' + ${member.lastName}"></div>
+			</li>
+		</ul>
+	</div>
+	<h3>Tasks</h3>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th th:if="${project.owner.id} == ${loggedUser.id}">Assign</th>
+					<th th:if="${project.owner.id} == ${loggedUser.id}">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="task : ${project.tasks}">
+					<td><a th:href="'/task/' + ${task.id} +'/' +${project.id}" th:text="${task.name}"></a>
+					<td><a th:if="${project.owner.id} == ${loggedUser.id}" th:href="'/task/assign/' +${task.id} +'/' +${project.id}">Assign</a></td>
+					<td>
+						<form method="POST" th:action="@{/task/delete/{taskId}(taskId=${task.id})}">
+							<button th:if="${project.owner.id} == ${loggedUser.id}" type="submit" name="submit" value="value">DELETE</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	<h3><a th:if="${project.owner.id} == ${loggedUser.id}" th:href="'/task/add/' +${project.id}">Add task</a></h3>
+	<h3><a th:if="${project.owner.id} == ${loggedUser.id}" th:href="'/project/share/' +${project.id}">Share</a></h3>
+	<h3><a th:if="${project.owner.id} == ${loggedUser.id}" th:href="'/project/update/' +${project.id}">Update</a></h3>
+</body>
+</html>

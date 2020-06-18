@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html	lang="en"
+		xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>TaskManager</title>
+</head>
+<body>
+	<h1 style="color:red">Projects shared with me</h1>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each = "project : ${projects}">
+						<td><a th:href="'/projects/' + ${project.id}" th:text="${project.name}">...</a></td>
+						<td th:text="${project.description}" style="color:gray">...</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+</body>
+</html>

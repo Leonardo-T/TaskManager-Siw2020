@@ -1,0 +1,173 @@
+PGDMP              
+            x           taskmanager    12.3    12.3 %    >           0    0    ENCODING    ENCODING        SET client_encoding = 'UTF8';
+                      false            ?           0    0 
+   STDSTRINGS 
+   STDSTRINGS     (   SET standard_conforming_strings = 'on';
+                      false            @           0    0 
+   SEARCHPATH 
+   SEARCHPATH     8   SELECT pg_catalog.set_config('search_path', '', false);
+                      false            A           1262    16393    taskmanager    DATABASE     ‹   CREATE DATABASE taskmanager WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Italian_Italy.1252' LC_CTYPE = 'Italian_Italy.1252';
+    DROP DATABASE taskmanager;
+                postgres    false            Î            1259    44581    credentials    TABLE     Ö   CREATE TABLE public.credentials (
+    id bigint NOT NULL,
+    password character varying(100) NOT NULL,
+    role character varying(10) NOT NULL,
+    user_name character varying(100) NOT NULL,
+    user_id bigint
+);
+    DROP TABLE public.credentials;
+       public         heap    postgres    false            Í            1259    44579    hibernate_sequence    SEQUENCE     {   CREATE SEQUENCE public.hibernate_sequence
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ )   DROP SEQUENCE public.hibernate_sequence;
+       public          postgres    false            Ê            1259    25737    project    TABLE     Ÿ   CREATE TABLE public.project (
+    id bigint NOT NULL,
+    description character varying(255),
+    name character varying(255) NOT NULL,
+    owner_id bigint
+);
+    DROP TABLE public.project;
+       public         heap    postgres    false            Ë            1259    25745    project_members    TABLE     q   CREATE TABLE public.project_members (
+    visible_projects_id bigint NOT NULL,
+    members_id bigint NOT NULL
+);
+ #   DROP TABLE public.project_members;
+       public         heap    postgres    false            Ï            1259    44586    projects    TABLE         CREATE TABLE public.projects (
+    id bigint NOT NULL,
+    description character varying(255),
+    name character varying(255) NOT NULL,
+    owner_id bigint
+);
+    DROP TABLE public.projects;
+       public         heap    postgres    false            Ð            1259    44594    projects_members    TABLE     r   CREATE TABLE public.projects_members (
+    visible_projects_id bigint NOT NULL,
+    members_id bigint NOT NULL
+);
+ $   DROP TABLE public.projects_members;
+       public         heap    postgres    false            Ì            1259    25748    task    TABLE     =  CREATE TABLE public.task (
+    id bigint NOT NULL,
+    completed boolean NOT NULL,
+    creation_time_stamp timestamp without time zone NOT NULL,
+    description character varying(255),
+    last_update_time_stamp timestamp without time zone NOT NULL,
+    name character varying(255) NOT NULL,
+    project_id bigint
+);
+    DROP TABLE public.task;
+       public         heap    postgres    false            Ñ            1259    44597    tasks    TABLE     P  CREATE TABLE public.tasks (
+    id bigint NOT NULL,
+    completed boolean NOT NULL,
+    creation_timestamp timestamp without time zone NOT NULL,
+    description character varying(255),
+    last_update_timestamp timestamp without time zone NOT NULL,
+    name character varying(255) NOT NULL,
+    user_id bigint,
+    project_id bigint
+);
+    DROP TABLE public.tasks;
+       public         heap    postgres    false            Ò            1259    44605    users    TABLE       CREATE TABLE public.users (
+    id bigint NOT NULL,
+    creation_timestamp timestamp without time zone NOT NULL,
+    first_name character varying(100) NOT NULL,
+    last_name character varying(100) NOT NULL,
+    last_update_timestamp timestamp without time zone NOT NULL
+);
+    DROP TABLE public.users;
+       public         heap    postgres    false            7          0    44581    credentials 
+   TABLE DATA           M   COPY public.credentials (id, password, role, user_name, user_id) FROM stdin;
+    public          postgres    false    206   |-       3          0    25737    project 
+   TABLE DATA           B   COPY public.project (id, description, name, owner_id) FROM stdin;
+    public          postgres    false    202   +.       4          0    25745    project_members 
+   TABLE DATA           J   COPY public.project_members (visible_projects_id, members_id) FROM stdin;
+    public          postgres    false    203   r.       8          0    44586    projects 
+   TABLE DATA           C   COPY public.projects (id, description, name, owner_id) FROM stdin;
+    public          postgres    false    207   “.       9          0    44594    projects_members 
+   TABLE DATA           K   COPY public.projects_members (visible_projects_id, members_id) FROM stdin;
+    public          postgres    false    208   è.       5          0    25748    task 
+   TABLE DATA           y   COPY public.task (id, completed, creation_time_stamp, description, last_update_time_stamp, name, project_id) FROM stdin;
+    public          postgres    false    204   	/       :          0    44597    tasks 
+   TABLE DATA              COPY public.tasks (id, completed, creation_timestamp, description, last_update_timestamp, name, user_id, project_id) FROM stdin;
+    public          postgres    false    209   &/       ;          0    44605    users 
+   TABLE DATA           e   COPY public.users (id, creation_timestamp, first_name, last_name, last_update_timestamp) FROM stdin;
+    public          postgres    false    210   °/       B           0    0    hibernate_sequence    SEQUENCE SET     @   SELECT pg_catalog.setval('public.hibernate_sequence', 8, true);
+          public          postgres    false    205            ¤
+           2606    44585    credentials credentials_pkey 
+   CONSTRAINT     Z   ALTER TABLE ONLY public.credentials
+    ADD CONSTRAINT credentials_pkey PRIMARY KEY (id);
+ F   ALTER TABLE ONLY public.credentials DROP CONSTRAINT credentials_pkey;
+       public            postgres    false    206             
+           2606    25744    project project_pkey 
+   CONSTRAINT     R   ALTER TABLE ONLY public.project
+    ADD CONSTRAINT project_pkey PRIMARY KEY (id);
+ >   ALTER TABLE ONLY public.project DROP CONSTRAINT project_pkey;
+       public            postgres    false    202            ¨
+           2606    44593    projects projects_pkey 
+   CONSTRAINT     T   ALTER TABLE ONLY public.projects
+    ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
+ @   ALTER TABLE ONLY public.projects DROP CONSTRAINT projects_pkey;
+       public            postgres    false    207            ¢
+           2606    25755    task task_pkey 
+   CONSTRAINT     L   ALTER TABLE ONLY public.task
+    ADD CONSTRAINT task_pkey PRIMARY KEY (id);
+ 8   ALTER TABLE ONLY public.task DROP CONSTRAINT task_pkey;
+       public            postgres    false    204            ª
+           2606    44604    tasks tasks_pkey 
+   CONSTRAINT     N   ALTER TABLE ONLY public.tasks
+    ADD CONSTRAINT tasks_pkey PRIMARY KEY (id);
+ :   ALTER TABLE ONLY public.tasks DROP CONSTRAINT tasks_pkey;
+       public            postgres    false    209            ¦
+           2606    44611 (   credentials uk_iruybducdoxd2f0vh3t8g6x5y 
+   CONSTRAINT     h   ALTER TABLE ONLY public.credentials
+    ADD CONSTRAINT uk_iruybducdoxd2f0vh3t8g6x5y UNIQUE (user_name);
+ R   ALTER TABLE ONLY public.credentials DROP CONSTRAINT uk_iruybducdoxd2f0vh3t8g6x5y;
+       public            postgres    false    206            ¬
+           2606    44609    users users_pkey 
+   CONSTRAINT     N   ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+ :   ALTER TABLE ONLY public.users DROP CONSTRAINT users_pkey;
+       public            postgres    false    210            ±
+           2606    44622 ,   projects_members fk6ebvqqi6hao0mn5yqjkjqqrwl 
+   FK CONSTRAINT     Ž   ALTER TABLE ONLY public.projects_members
+    ADD CONSTRAINT fk6ebvqqi6hao0mn5yqjkjqqrwl FOREIGN KEY (members_id) REFERENCES public.users(id);
+ V   ALTER TABLE ONLY public.projects_members DROP CONSTRAINT fk6ebvqqi6hao0mn5yqjkjqqrwl;
+       public          postgres    false    208    2732    210            ³
+           2606    44632 !   tasks fk6s1ob9k4ihi75xbxe2w0ylsdh 
+   FK CONSTRAINT     €   ALTER TABLE ONLY public.tasks
+    ADD CONSTRAINT fk6s1ob9k4ihi75xbxe2w0ylsdh FOREIGN KEY (user_id) REFERENCES public.users(id);
+ K   ALTER TABLE ONLY public.tasks DROP CONSTRAINT fk6s1ob9k4ihi75xbxe2w0ylsdh;
+       public          postgres    false    209    210    2732            ¯
+           2606    44612 '   credentials fkcbcgksvnqvqxrrc4dwv3qys65 
+   FK CONSTRAINT     †   ALTER TABLE ONLY public.credentials
+    ADD CONSTRAINT fkcbcgksvnqvqxrrc4dwv3qys65 FOREIGN KEY (user_id) REFERENCES public.users(id);
+ Q   ALTER TABLE ONLY public.credentials DROP CONSTRAINT fkcbcgksvnqvqxrrc4dwv3qys65;
+       public          postgres    false    210    206    2732            ®
+           2606    25778     task fkk8qrwowg31kx7hp93sru1pdqa 
+   FK CONSTRAINT     „   ALTER TABLE ONLY public.task
+    ADD CONSTRAINT fkk8qrwowg31kx7hp93sru1pdqa FOREIGN KEY (project_id) REFERENCES public.project(id);
+ J   ALTER TABLE ONLY public.task DROP CONSTRAINT fkk8qrwowg31kx7hp93sru1pdqa;
+       public          postgres    false    202    204    2720            ­
+           2606    25773 +   project_members fkkkowdb1552cnnmu8apvugooo0 
+   FK CONSTRAINT     ˜   ALTER TABLE ONLY public.project_members
+    ADD CONSTRAINT fkkkowdb1552cnnmu8apvugooo0 FOREIGN KEY (visible_projects_id) REFERENCES public.project(id);
+ U   ALTER TABLE ONLY public.project_members DROP CONSTRAINT fkkkowdb1552cnnmu8apvugooo0;
+       public          postgres    false    203    202    2720            °
+           2606    44617 $   projects fkmueqy6cpcwpfl8gnnag4idjt9 
+   FK CONSTRAINT     „   ALTER TABLE ONLY public.projects
+    ADD CONSTRAINT fkmueqy6cpcwpfl8gnnag4idjt9 FOREIGN KEY (owner_id) REFERENCES public.users(id);
+ N   ALTER TABLE ONLY public.projects DROP CONSTRAINT fkmueqy6cpcwpfl8gnnag4idjt9;
+       public          postgres    false    2732    210    207            ²
+           2606    44627 ,   projects_members fkp7fwtdfobot07e3n296tlhn7f 
+   FK CONSTRAINT     š   ALTER TABLE ONLY public.projects_members
+    ADD CONSTRAINT fkp7fwtdfobot07e3n296tlhn7f FOREIGN KEY (visible_projects_id) REFERENCES public.projects(id);
+ V   ALTER TABLE ONLY public.projects_members DROP CONSTRAINT fkp7fwtdfobot07e3n296tlhn7f;
+       public          postgres    false    208    2728    207            ´
+           2606    44637 !   tasks fksfhn82y57i3k9uxww1s007acc 
+   FK CONSTRAINT     †   ALTER TABLE ONLY public.tasks
+    ADD CONSTRAINT fksfhn82y57i3k9uxww1s007acc FOREIGN KEY (project_id) REFERENCES public.projects(id);
+ K   ALTER TABLE ONLY public.tasks DROP CONSTRAINT fksfhn82y57i3k9uxww1s007acc;
+       public          postgres    false    2728    209    207            7   Ÿ   xœEÌI‚0  ÀsûÎ
+E$‘-h¢ñRcYd“­¯÷dœŒDIúFé£©täÑljt©?Òàƒc'ÇÒªyæR—,“õ)ê<\ÇÕ¦eëfmCûgå_y@å·V—Nb»"M`.Óßx$ø\± Q¸a\ò¢N\5Ý»Ùö59ÿr(f$"ìà}!ü‡,3(      3   7   xœ3æLLJLâ,I-.)(ÊÏJM.1ä4ä2á,,Šä+^¡™£`„,o”Ñãââ Jl†      4      xœ3æ4âŠÑãââ v!      8   E   xœ3å(ÊOO-)ÉW(H-RH-NÌMåI,ÎöMÌKLO-â4â²àLI-N.Ê¬ÊÌÏK)/KT0ŠÇèqqq ½©ð      9      xœ3å4áŠÑãââ –%      5   
+   xœ‹Ñãââ Å ©      :   z   xœ3çLã4202Ð50Ó5´P04´21³25Ñ34µ´00â,(Ê/KT “ø”¹%f*–¦æääsÆøqšr™a˜jhled¨g`i`j`Éé’Zœ\”Y•™Ÿ—ª’‰Ýxs+S=33sK#˜ñÅ%ùœ&@Ócô¸¸¸ ±õ+ß      ;   e   xœ3â4202Ð50Ó5´P04´24²24Ñ34466±äôIÍÏK,JÉçÉ/*ÉÏÌÏÉÄ®ÚØÈØÔ”ËSÒÄ@ÏÈÐÈÐÜ³ (¿,Q!/?7ÊLÎOópëáŠÑãââ ôx%±     

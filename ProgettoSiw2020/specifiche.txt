@@ -1,0 +1,69 @@
+-Signup
+
+ Un utente seleziona la voce di registrazione, compila i campi e li invia; il sistema 
+ inserisce quindi i dati nel database.
+
+-Autenticazione
+ 
+ Un utente seleziona la voce di login, immette username e password e il sistema verifica
+ la loro correttezza paragonandoli ai dati nel database.
+
+-Visualizzare il mio profilo
+ 
+ Un utente vuole visualizzare i suoi dati, il sistema li compila utilizzando i dati salvati
+
+-Aggiornare il mio profilo
+
+ Un utente dalla home seleziona la voce update, il sistema prende i dati salvati 
+ e li aggiorna utilizzando quelli modificati dall'utente inseriti nella form.
+
+
+-Creare un nuovo progetto
+
+ Un utente crea un nuovo progetto dalla apposita voce nella home, il sistema mostra la form
+ che l'utente compila e che viene usata per salvare i dati nel database.
+
+-Visualizzare i miei progetti
+ 
+ Un utente visualizza i progetti da lui creati, il sistema mostra tutti i progetti dei quali
+ l'utente è il proprietario (owner)
+
+-Visualizzare i progetti condivisi con me
+ 
+ Un utente visualizza i progetti che altri utenti hanno condiviso con lui, il sitema effettua
+ una ricerca tra tutti i progetti salvati usando l'utente come parametro
+ 
+-Aggiornare i dati di un mio progetto
+
+ Un utente aggiorna i dati di un progetto di cui è il propietario, il sistema mostra una form
+ con i dati del progetto già salvato e lo aggiorna con i dati inseriti dall'utente
+
+-Cancellare un mio progetto
+
+ Un utente canella un progetto da lui creato, lo effettua grazie a una form
+
+-Condividere un mio progetto con un altro utente
+
+ Un utente condivide un progetto che possiede con un altro utente, il sistema aggiorna
+ l'attributo members aggiungendo il nuovo utente ad esso
+
+
+-Aggiungere un nuovo Task a un mio progetto
+
+ Un utente aggiunge un Task a un suo progetto, il sistema mostra la form associata alla task
+ e la crea utilizzando i dati immessi dall'utente, poi la aggiunge alla lista tasks del progetto.
+
+-Aggiornare un Task di un mio progetto
+
+ Un utente aggiorna i dati di un suo task, stesso procedimento dell'aggiornamento di un progetto.
+
+-Cancellare un Task da un mio progetto
+
+ Un utente cancella un task da un suo progetto, stesso procedimento della cancellazione
+ di un progetto.
+
+-Assegnare un Task di un mio progetto ad un utente che ha visibilità sul mio progetto
+
+ Un utente assegna un Task a un altro utente con il quale ha condiviso il progetto, il sistema 
+ aggiorna l'attributo user della task prendendo l'utente designato dalla lista members del progetto.
+ 
